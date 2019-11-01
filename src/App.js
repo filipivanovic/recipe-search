@@ -1,14 +1,13 @@
 import React, { Component, Fragment } from 'react';
-import {recipes} from './tempList'
 import RecipeList from './components/Recipes/RecipeList'
 import RecipeDetails from './components/Recipes/RecipeDetails'
 import './App.css';
 
 class App extends Component {
   state = {
-    recipes: recipes,
-    url: 'https://cors-anywhere.herokuapp.com/https://www.food2fork.com/api/search?key=1710c72f6c76ad68282122276f16c190',
-    base_url: 'https://cors-anywhere.herokuapp.com/https://www.food2fork.com/api/search?key=1710c72f6c76ad68282122276f16c190',
+    recipes: [],
+    url: 'https://cors-anywhere.herokuapp.com/https://www.food2fork.com/api/search?key=a8ec4f558fc41d3d40ceb251eefd0c97',
+    base_url: 'https://cors-anywhere.herokuapp.com/https://www.food2fork.com/api/search?key=a8ec4f558fc41d3d40ceb251eefd0c97',
     details_id: 35386,
     pageIndex: 1,
     search: '',
@@ -20,6 +19,7 @@ class App extends Component {
     try {
       const data = await fetch(this.state.url)
       const jsonData = await data.json();
+      console.log(jsonData.recipes)
 
       if(jsonData.recipes.length === 0) {
         this.setState(() => {
@@ -28,13 +28,13 @@ class App extends Component {
           }
         })
       } else {
-        this.setState(()=> {
+        this.setState(() => {
           return {
             recipes: jsonData.recipes
           }
         })
       }
-      
+  
     } catch(error) {
       console.log(error)
     }

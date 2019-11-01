@@ -10,18 +10,18 @@ class RecipeDetails extends Component {
     }
   }
       
-  // async componentDidMount() {
-  //   try {
-  //     const data = await fetch(this.state.url)
-  //     const jsonData = await data.json();
+  async componentDidMount() {
+    try {
+      const data = await fetch(this.state.url)
+      const jsonData = await data.json();
   
-  //     this.setState({
-  //       recipe: jsonData.recipe
-  //     })
-  //   } catch(error) {
-  //     console.log(error)
-  //   }
-  // }
+      this.setState({
+        recipe: jsonData.recipe
+      })
+    } catch(error) {
+      console.log(error)
+    }
+  }
       
   render() {
     const { image_url, publisher, publisher_url, source_url, title, ingredients } = this.state.recipe;
